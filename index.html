@@ -120,7 +120,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar for Phone Container */
 .app-body::-webkit-scrollbar {
   width: 4px;
 }
@@ -299,7 +298,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* Horizontal Swipe Chips */
 .chips-scroll-container {
   display: flex;
   gap: 8px;
@@ -330,7 +328,6 @@ body {
   box-shadow: 0 4px 10px rgba(10, 25, 47, 0.15);
 }
 
-/* 3D Visual Document Card */
 .portfolio-card-3d {
   background: #ffffff;
   border: 1px solid var(--truval-border);
@@ -357,19 +354,6 @@ body {
   overflow: hidden;
 }
 
-.portfolio-card-header::after {
-  content: '';
-  position: absolute;
-  right: -30px;
-  bottom: -30px;
-  width: 120px;
-  height: 120px;
-  background: rgba(20, 184, 166, 0.15);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-/* 3D Book Graphic Illusion */
 .book-spine-3d {
   width: 50px;
   height: 68px;
@@ -404,21 +388,20 @@ body {
   font-size: 0.62rem;
   color: var(--truval-text-muted);
   font-weight: 600;
-  text-uppercase: uppercase;
+  text-transform: uppercase;
 }
 .metrics-item .val-before {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #ef4444;
-  text-decoration: line-through;
 }
 .metrics-item .val-after {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 800;
   color: var(--truval-tosca-dark);
 }
 
-/* NATIVE BOTTOM SHEET MODAL (iOS/Android Style) */
+/* NATIVE BOTTOM SHEET MODAL */
 .bottom-sheet-modal .modal-dialog {
   margin: 0;
   position: fixed;
@@ -547,7 +530,7 @@ body {
       <div class="marquee-app">
         <div class="marquee-app-content">
           <span><i class="bi bi-shield-check text-success"></i> 99% Neraca Balance</span>
-          <span><i class="bi bi-trophy text-warning"></i> 20+ Portofolio Selesai</span>
+          <span><i class="bi bi-trophy text-warning"></i> 10+ Portofolio Kasus Selesai</span>
           <span><i class="bi bi-star-fill text-warning"></i> Rating 4.9/5 Klien</span>
           <span><i class="bi bi-shield-check text-success"></i> 99% Neraca Balance</span>
         </div>
@@ -643,186 +626,221 @@ body {
       </div>
     </div>
 
-    <!-- ================= TAB 3: PORTOFOLIO (HIGH-END REVISED) ================= -->
+    <!-- ================= TAB 3: PORTOFOLIO (#TRV-01 s.d. #TRV-10 REVISED) ================= -->
     <div id="app-portofolio" class="app-screen">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
           <h6 class="fw-bold mb-0" style="color:var(--truval-navy);">Portofolio & Studi Kasus</h6>
           <span class="text-muted" style="font-size:0.7rem;">Rekam jejak perapihan presisi TruVal</span>
         </div>
-        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1" style="font-size:0.65rem;">20+ Proyek</span>
+        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1" style="font-size:0.65rem;">10 Kasus TruVal</span>
       </div>
 
       <!-- SEARCH BAR -->
       <div class="portfolio-search-box">
         <i class="bi bi-search"></i>
-        <input type="text" id="portfolioSearchInput" placeholder="Cari kasus (misal: Selisih, CaLK, HPP)..." onkeyup="filterPortfolioItems()">
+        <input type="text" id="portfolioSearchInput" placeholder="Cari kasus (misal: TRV-01, UMKM, ISAK)..." onkeyup="filterPortfolioItems()">
       </div>
 
       <!-- HORIZONTAL SWIPE CHIPS -->
       <div class="chips-scroll-container">
         <button class="chip-btn active" onclick="filterPortfolioCategory('all', this)">Semua</button>
         <button class="chip-btn" onclick="filterPortfolioCategory('umkm', this)">UMKM & Retail</button>
-        <button class="chip-btn" onclick="filterPortfolioCategory('akademik', this)">Studi Akademik</button>
+        <button class="chip-btn" onclick="filterPortfolioCategory('organisasi', this)">Organisasi</button>
+        <button class="chip-btn" onclick="filterPortfolioCategory('koperasi', this)">Koperasi & Nirlaba</button>
         <button class="chip-btn" onclick="filterPortfolioCategory('jasa', this)">Perusahaan Jasa</button>
-        <button class="chip-btn" onclick="filterPortfolioCategory('koperasi', this)">Koperasi</button>
+        <button class="chip-btn" onclick="filterPortfolioCategory('akademik', this)">Studi Akademik</button>
       </div>
 
-      <!-- PORTFOLIO LIST CONTAINER -->
+      <!-- PORTFOLIO LIST CONTAINER (#TRV-01 S.D #TRV-10) -->
       <div id="portfolioList">
 
-        <!-- ITEM 1 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="ud sumber rejeki neraca selisih rekonsiliasi umkm" onclick="openPortfolioSheet(0)">
+        <!-- TRV-01 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-01 jurnal keuangan bagian umkm balance" onclick="openPortfolioSheet(0)">
           <div class="portfolio-card-header">
             <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">UMKM & Retail</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">UD Sumber Rejeki</h6>
-              <span class="text-white-50" style="font-size:0.68rem;"><i class="bi bi-geo-alt me-1"></i>Surakarta</span>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-01 • UMKM</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Jurnal Keuangan UMKM</h6>
             </div>
-            <div class="book-spine-3d">
-              <i class="bi bi-file-earmark-spreadsheet"></i>
-            </div>
+            <div class="book-spine-3d"><i class="bi bi-file-earmark-spreadsheet"></i></div>
           </div>
           <div class="p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="badge bg-success bg-opacity-10 text-success fw-bold" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 100%</span>
-              <span class="text-muted" style="font-size:0.68rem;"><i class="bi bi-clock me-1"></i>24 Jam</span>
-            </div>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Rekonsiliasi Neraca & Ekuitas yang Bermasalah</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Mengoreksi rumus korelasi antar tabel persediaan barang dan laba ditahan.</p>
-           
-            <!-- BEFORE VS AFTER METRICS -->
-            <div class="metrics-comparison-box">
-              <div class="metrics-item">
-                <div class="label">Selisih Awal</div>
-                <div class="val-before">Rp 18.500.000</div>
-              </div>
-              <div class="text-muted fw-bold" style="font-size:0.8rem;"><i class="bi bi-arrow-right"></i></div>
-              <div class="metrics-item">
-                <div class="label">Hasil TruVal</div>
-                <div class="val-after">Rp 0 (Balance)</div>
-              </div>
-            </div>
-
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Balance Siap Digunakan</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Jurnal Keuangan bagian UMKM</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Jurnal mengalami selisih sehingga laporan laba rugi tidak balance akhirnya Tim Truval membuka jurnal buku besar, dan merumuskan sesuai format, akhirnya balance kembali.</p>
             <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail & Solusi <i class="bi bi-chevron-right ms-1"></i></span>
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
             </div>
           </div>
         </div>
 
-        <!-- ITEM 2 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="akademik" data-title="pt karya mandiri calk akademik laporan keuangan skripsi" onclick="openPortfolioSheet(1)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #0d9488 0%, #0a192f 100%);">
+        <!-- TRV-02 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-02 umkm kuliner warung kuliner sejahtera hpp laba ditahan" onclick="openPortfolioSheet(1)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #d97706 0%, #78350f 100%);">
             <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">Studi Akademik</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">PT Karya Mandiri</h6>
-              <span class="text-white-50" style="font-size:0.68rem;"><i class="bi bi-mortarboard me-1"></i>Tugas Akhir S1</span>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-02 • UMKM</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Warung Kuliner Sejahtera</h6>
             </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #e2e8f0 10%, var(--truval-navy) 20%, #1e293b 100%);">
-              <i class="bi bi-journal-text"></i>
-            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #fde68a 10%, #d97706 20%, #b45309 100%);"><i class="bi bi-shop"></i></div>
           </div>
           <div class="p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="badge bg-success bg-opacity-10 text-success fw-bold" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Standar Dosen Penguji</span>
-              <span class="text-muted" style="font-size:0.68rem;"><i class="bi bi-clock me-1"></i>12 Jam</span>
-            </div>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Penyusunan CaLK & Sinkronisasi Laporan Akhir</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Penyelarasan nomor akun, penataan layout CaLK, dan pemeriksaan formula matematika.</p>
-
-            <!-- BEFORE VS AFTER METRICS -->
-            <div class="metrics-comparison-box">
-              <div class="metrics-item">
-                <div class="label">Status Awal</div>
-                <div class="val-before">Revisi Format</div>
-              </div>
-              <div class="text-muted fw-bold" style="font-size:0.8rem;"><i class="bi bi-arrow-right"></i></div>
-              <div class="metrics-item">
-                <div class="label">Hasil TruVal</div>
-                <div class="val-after">ACC Sidang</div>
-              </div>
-            </div>
-
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Kuliner (Warung Kuliner Sejahtera)</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi HPP & Laba Ditahan selesai. Siap presentasi & audit.</p>
             <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail & Solusi <i class="bi bi-chevron-right ms-1"></i></span>
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
             </div>
           </div>
         </div>
 
-        <!-- ITEM 3 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="jasa" data-title="cv jasa nusantara arus kas transaksi perusahaan jasa" onclick="openPortfolioSheet(2)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);">
+        <!-- TRV-03 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="organisasi" data-title="trv-03 organisasi kemahasiswaan hima manajemen lpj surplus defisit" onclick="openPortfolioSheet(2)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%);">
             <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">Perusahaan Jasa</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">CV Jasa Nusantara</h6>
-              <span class="text-white-50" style="font-size:0.68rem;"><i class="bi bi-building me-1"></i>Jakarta</span>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-03 • Organisasi</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">HIMA Manajemen - LPJ</h6>
             </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #e2e8f0 10%, #f59e0b 20%, #d97706 100%);">
-              <i class="bi bi-cash-stack"></i>
-            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #c7d2fe 10%, #4f46e5 20%, #3730a3 100%);"><i class="bi bi-people"></i></div>
           </div>
           <div class="p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="badge bg-success bg-opacity-10 text-success fw-bold" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Arus Kas Otomatis</span>
-              <span class="text-muted" style="font-size:0.68rem;"><i class="bi bi-clock me-1"></i>18 Jam</span>
-            </div>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Sinkronisasi Arus Kas dari 450+ Transaksi</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Membuat penghubung otomatis antara operasional, investasi, dan pendanaan.</p>
-
-            <!-- BEFORE VS AFTER METRICS -->
-            <div class="metrics-comparison-box">
-              <div class="metrics-item">
-                <div class="label">Kondisi Awal</div>
-                <div class="val-before">Manual & Error</div>
-              </div>
-              <div class="text-muted fw-bold" style="font-size:0.8rem;"><i class="bi bi-arrow-right"></i></div>
-              <div class="metrics-item">
-                <div class="label">Hasil TruVal</div>
-                <div class="val-after">Auto-Linked</div>
-              </div>
-            </div>
-
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Organisasi Kemahasiswaan (HIMA Manajemen)</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Inflow/Outflow Kas Kegiatan & Surplus/Defisit selesai. Siap presentasi & audit.</p>
             <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail & Solusi <i class="bi bi-chevron-right ms-1"></i></span>
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
             </div>
           </div>
         </div>
 
-        <!-- ITEM 4 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="koperasi" data-title="koperasi sejahtera persediaan hpp laporan keuangan rat" onclick="openPortfolioSheet(3)">
+        <!-- TRV-04 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="koperasi" data-title="trv-04 organisasi nirlaba yayasan peduli bersama isak 35" onclick="openPortfolioSheet(3)">
           <div class="portfolio-card-header" style="background: linear-gradient(135deg, #059669 0%, #064e3b 100%);">
             <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">Koperasi</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Koperasi Sejahtera</h6>
-              <span class="text-white-50" style="font-size:0.68rem;"><i class="bi bi-people me-1"></i>Semarang</span>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-04 • Koperasi & Nirlaba</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Yayasan Peduli Bersama</h6>
             </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #e2e8f0 10%, #10b981 20%, #047857 100%);">
-              <i class="bi bi-calculator"></i>
-            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #a7f3d0 10%, #059669 20%, #047857 100%);"><i class="bi bi-heart"></i></div>
           </div>
           <div class="p-3">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <span class="badge bg-success bg-opacity-10 text-success fw-bold" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Laporan RAT Valid</span>
-              <span class="text-muted" style="font-size:0.68rem;"><i class="bi bi-clock me-1"></i>2 Buah Laporan</span>
-            </div>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Audit Perhitungan HPP & SHU Koperasi</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Perapihan buku persediaan dan perhitungan pembagian SHU anggota secara presisi.</p>
-
-            <!-- BEFORE VS AFTER METRICS -->
-            <div class="metrics-comparison-box">
-              <div class="metrics-item">
-                <div class="label">Selisih SHU</div>
-                <div class="val-before">Rp 5.200.000</div>
-              </div>
-              <div class="text-muted fw-bold" style="font-size:0.8rem;"><i class="bi bi-arrow-right"></i></div>
-              <div class="metrics-item">
-                <div class="label">Hasil TruVal</div>
-                <div class="val-after">Rp 0 (Presisi)</div>
-              </div>
-            </div>
-
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Organisasi Nirlaba (ISAK 35)</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Aset Bersih Terikat & Tidak Terikat (ISAK 35) selesai. Siap presentasi & audit.</p>
             <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail & Solusi <i class="bi bi-chevron-right ms-1"></i></span>
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRV-05 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="jasa" data-title="trv-05 perusahaan jasa pt konsultan utama sejahtera net income" onclick="openPortfolioSheet(4)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+            <div>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-05 • Perusahaan Jasa</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">PT Konsultan Utama</h6>
+            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #bae6fd 10%, #0284c7 20%, #0369a1 100%);"><i class="bi bi-briefcase"></i></div>
+          </div>
+          <div class="p-3">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Perusahaan Jasa Korporasi</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Laba Bersih Setelah Pajak (Net Income) & Retained Earnings selesai. Siap presentasi & audit.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRV-06 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="akademik" data-title="trv-06 studi akademik pt mandiri teknologi tama solvabilitas" onclick="openPortfolioSheet(5)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">
+            <div>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-06 • Studi Akademik</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">PT Mandiri Teknologi</h6>
+            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #ddd6fe 10%, #7c3aed 20%, #6d28d9 100%);"><i class="bi bi-journal-bookmark"></i></div>
+          </div>
+          <div class="p-3">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Studi Akademik Keuangan</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Matriks Rasio Solvabilitas & Ekuitas Saham selesai. Siap presentasi & audit.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRV-07 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-07 umkm kerajinan kreasi bambu nusantara prive pemilik" onclick="openPortfolioSheet(6)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #b45309 0%, #78350f 100%);">
+            <div>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-07 • UMKM & Retail</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Kreasi Bambu Nusantara</h6>
+            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #fef3c7 10%, #b45309 20%, #92400e 100%);"><i class="bi bi-hammer"></i></div>
+          </div>
+          <div class="p-3">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Kerajinan</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Laporan Perubahan Ekuitas & Prive Pemilik selesai. Siap presentasi & audit.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRV-08 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-08 umkm jasa bersih kilat laundry arus kas ekuitas" onclick="openPortfolioSheet(7)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #0d9488 0%, #115e59 100%);">
+            <div>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-08 • UMKM & Retail</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Bersih Kilat Laundry</h6>
+            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #ccfbf1 10%, #0d9488 20%, #0f766e 100%);"><i class="bi bi-water"></i></div>
+          </div>
+          <div class="p-3">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Jasa</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Arus Kas Bersih & Penyesuaian Ekuitas selesai. Siap presentasi & audit.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRV-09 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-09 umkm fashion konveksi busana indah hpp manufaktur" onclick="openPortfolioSheet(8)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #e11d48 0%, #9f1239 100%);">
+            <div>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-09 • UMKM & Retail</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Konveksi Busana Indah</h6>
+            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #fecdd3 10%, #e11d48 20%, #be123c 100%);"><i class="bi bi-scissors"></i></div>
+          </div>
+          <div class="p-3">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Fashion & Konveksi</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Biaya Produksi (HPP Manufaktur) & Laba Ditahan selesai. Siap presentasi & audit.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRV-10 -->
+        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-10 umkm ritel toko rejeki utama persediaan barang ekuitas" onclick="openPortfolioSheet(9)">
+          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
+            <div>
+              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-10 • UMKM & Retail</span>
+              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Toko Rejeki Utama</h6>
+            </div>
+            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #d1fae5 10%, #10b981 20%, #059669 100%);"><i class="bi bi-basket"></i></div>
+          </div>
+          <div class="p-3">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
+            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Ritel</p>
+            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Persediaan Barang Dagangan & Ekuitas Pemilik selesai. Siap presentasi & audit.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
             </div>
           </div>
         </div>
@@ -861,28 +879,25 @@ body {
       <div class="modal-content p-3">
         <div class="bottom-sheet-drag-handle"></div>
         <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="badge bg-tosca bg-opacity-10 text-success p-2 rounded-3" id="sheetCategory">UMKM & Retail</span>
+          <span class="badge bg-tosca bg-opacity-10 text-success p-2 rounded-3" id="sheetCategory">UMKM</span>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
        
-        <h5 class="fw-bold mb-1" id="sheetTitle" style="color:var(--truval-navy);">UD Sumber Rejeki</h5>
-        <span class="text-muted mb-3 d-block" style="font-size:0.75rem;" id="sheetSubtitle"><i class="bi bi-geo-alt me-1"></i>Surakarta • Waktu: 24 Jam</span>
+        <h5 class="fw-bold mb-1" id="sheetTitle" style="color:var(--truval-navy);">Judul Proyek</h5>
+        <span class="text-muted mb-3 d-block" style="font-size:0.75rem;" id="sheetSubtitle"><i class="bi bi-check-circle-fill me-1"></i> Status: Balance</span>
 
         <!-- DETAILS CONTENT -->
         <div class="app-card border-0 bg-light p-3 mb-3">
-          <h6 class="fw-bold mb-1 text-dark" style="font-size:0.8rem;"><i class="bi bi-exclamation-triangle text-warning me-1"></i> Tantangan & Masalah</h6>
-          <p class="text-muted mb-3" style="font-size:0.75rem;" id="sheetChallenge">Laporan Keuangan UD Sumber Rejeki mengalami ketidakseimbangan (unbalanced) sebesar Rp 18,5 juta antara Total Aset dan Kewajiban + Ekuitas.</p>
+          <h6 class="fw-bold mb-1 text-dark" style="font-size:0.8rem;"><i class="bi bi-file-text text-primary me-1"></i> Deskripsi & Penanganan TruVal</h6>
+          <p class="text-muted mb-3" style="font-size:0.75rem;" id="sheetChallenge">Deskripsi penanganan laporan...</p>
          
-          <h6 class="fw-bold mb-1 text-dark" style="font-size:0.8rem;"><i class="bi bi-check-circle-fill text-success me-1"></i> Solusi Presisi TruVal</h6>
-          <p class="text-muted mb-0" style="font-size:0.75rem;" id="sheetSolution">Tim ahli TruVal melakukan penelusuran korelasi formula pada akun persediaan akhir, membenahi logika arus stok, dan menyinkronkan laba ditahan secara otomatis.</p>
+          <h6 class="fw-bold mb-1 text-dark" style="font-size:0.8rem;"><i class="bi bi-check-circle-fill text-success me-1"></i> Hasil Akhir</h6>
+          <p class="text-muted mb-0" style="font-size:0.75rem;" id="sheetSolution">Neraca balance 0 selisih, siap presentasi & audit.</p>
         </div>
 
         <div class="d-flex gap-2 mb-2">
-          <button class="btn btn-app-outline py-2 flex-grow-1" style="font-size:0.75rem;" onclick="alert('Demo spreadsheet perbaikan hanya tersedia untuk preview internal.')">
-            <i class="bi bi-eye me-1"></i> Lihat Preview Excel
-          </button>
-          <button class="btn btn-app-tosca py-2 flex-grow-1" style="font-size:0.75rem;" onclick="orderSimilarService()">
-            <i class="bi bi-whatsapp me-1"></i> Pesan Layanan Serupa
+          <button class="btn btn-app-tosca py-2 w-100" style="font-size:0.75rem;" onclick="orderSimilarService()">
+            <i class="bi bi-whatsapp me-1"></i> Pesan Layanan Serupa via WhatsApp
           </button>
         </div>
       </div>
@@ -948,35 +963,77 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-// PORTFOLIO DATA OBJECT
+// PORTFOLIO DATA OBJECT (#TRV-01 s.d #TRV-10)
 const portfolioData = [
   {
-    title: "UD Sumber Rejeki",
+    title: "Jurnal Keuangan UMKM",
     category: "UMKM & Retail",
-    subtitle: "Surakarta • Waktu Pengerjaan: 24 Jam",
-    challenge: "Laporan Keuangan UD Sumber Rejeki mengalami ketidakseimbangan (unbalanced) sebesar Rp 18,5 juta antara Total Aset dan Kewajiban + Ekuitas akibat kesalahan perhitungan persediaan akhir.",
-    solution: "Tim ahli TruVal melakukan penelusuran korelasi formula pada akun persediaan akhir, membenahi logika arus stok, dan menyinkronkan laba ditahan secara otomatis hingga seimbang 100%."
+    subtitle: "Hasilnya Balance Siap Digunakan",
+    challenge: "Jurnal mengalami selisih sehingga laporan laba rugi tidak balance akhirnya Tim Truval membuka jurnal buku besar, dan merumuskan sesuai format, akhirnya balance kembali.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
   {
-    title: "PT Karya Mandiri",
-    category: "Studi Akademik",
-    subtitle: "Tugas Akhir S1 • Waktu Pengerjaan: 12 Jam",
-    challenge: "Mahasiswa penyusun skripsi mengalami kendala revisi berulang pada bagian Catatan atas Laporan Keuangan (CaLK) dan ketidaksesuaian penomoran akun standar akuntansi.",
-    solution: "TruVal menata ulang format visual CaLK, memverifikasi korelasi angka laporan keuangan utama, dan menyesuaikan dengan pedoman penulisan akademik hingga siap diujikan."
+    title: "Warung Kuliner Sejahtera",
+    category: "UMKM & Retail",
+    subtitle: "UMKM Kuliner bagian UMKM",
+    challenge: "Rekonsiliasi HPP & Laba Ditahan selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
   {
-    title: "CV Jasa Nusantara",
+    title: "HIMA Manajemen - LPJ",
+    category: "Organisasi",
+    subtitle: "Organisasi Kemahasiswaan bagian organisasi",
+    challenge: "Rekonsiliasi Inflow/Outflow Kas Kegiatan & Surplus/Defisit selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
+  },
+  {
+    title: "Yayasan Peduli Bersama",
+    category: "Koperasi & Nirlaba",
+    subtitle: "Organisasi Nirlaba (ISAK 35) bagian Koperasi",
+    challenge: "Rekonsiliasi Aset Bersih Terikat & Tidak Terikat (ISAK 35) selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
+  },
+  {
+    title: "PT Konsultan Utama Sejahtera",
     category: "Perusahaan Jasa",
-    subtitle: "Jakarta • Waktu Pengerjaan: 18 Jam",
-    challenge: "Arus kas dari 450+ transaksi operasional dan investasi dicatat secara manual sehingga terjadi selisih kas akhir dengan angka neraca.",
-    solution: "Mengintegrasikan formula spreadsheet otomatis yang menghubungkan laporan laba rugi ke laporan arus kas secara langsung tanpa perlu penginputan ulang."
+    subtitle: "Perusahaan Jasa Korporasi bagian Jasa",
+    challenge: "Rekonsiliasi Laba Bersih Setelah Pajak (Net Income) & Retained Earnings selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
   {
-    title: "Koperasi Sejahtera",
-    category: "Koperasi",
-    subtitle: "Semarang • Waktu Pengerjaan: 2 Buah Laporan",
-    challenge: "Persiapan Rapat Anggota Tahunan (RAT) terhambat karena perhitungan HPP unit pertokoan dan pembagian SHU anggota mengalami selisih Rp 5,2 juta.",
-    solution: "Audit independen kilat oleh TruVal untuk merapikan kartu stok persediaan, menghitung ulang formula pembagian SHU, dan menyajikan laporan konsolidasi yang rapi."
+    title: "PT Mandiri Teknologi Tama",
+    category: "Studi Akademik",
+    subtitle: "Studi Akademik Keuangan bagian Studi Akademik",
+    challenge: "Rekonsiliasi Matriks Rasio Solvabilitas & Ekuitas Saham selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
+  },
+  {
+    title: "Kreasi Bambu Nusantara",
+    category: "UMKM & Retail",
+    subtitle: "UMKM Kerajinan bagian UMKM & Retail",
+    challenge: "Rekonsiliasi Laporan Perubahan Ekuitas & Prive Pemilik selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
+  },
+  {
+    title: "Bersih Kilat Laundry",
+    category: "UMKM & Retail",
+    subtitle: "UMKM Jasa bagian UMKM & Retail",
+    challenge: "Rekonsiliasi Arus Kas Bersih & Penyesuaian Ekuitas selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
+  },
+  {
+    title: "Konveksi Busana Indah",
+    category: "UMKM & Retail",
+    subtitle: "UMKM Fashion & Konveksi bagian UMKM & Retail",
+    challenge: "Rekonsiliasi Biaya Produksi (HPP Manufaktur) & Laba Ditahan selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
+  },
+  {
+    title: "Toko Rejeki Utama",
+    category: "UMKM & Retail",
+    subtitle: "UMKM Ritel bagian UMKM & Retail",
+    challenge: "Rekonsiliasi Persediaan Barang Dagangan & Ekuitas Pemilik selesai.",
+    solution: "Neraca balance 0 selisih, siap presentasi & audit."
   }
 ];
 
@@ -996,7 +1053,6 @@ function switchAppTab(tabName) {
 
 /* PORTFOLIO INTERACTIVE FUNCTIONS */
 function filterPortfolioCategory(category, btnElement) {
-  // Update Active Chip
   document.querySelectorAll('.chip-btn').forEach(btn => btn.classList.remove('active'));
   btnElement.classList.add('active');
 
@@ -1028,9 +1084,9 @@ function openPortfolioSheet(index) {
   currentActiveSheetIndex = index;
   const data = portfolioData[index];
  
-  document.getElementById('sheetTitle').innerText = data.title;
+  document.getElementById('sheetTitle').innerText = `#TRV-0${index+1} • ` + data.title;
   document.getElementById('sheetCategory').innerText = data.category;
-  document.getElementById('sheetSubtitle').innerHTML = `<i class="bi bi-geo-alt me-1"></i>` + data.subtitle;
+  document.getElementById('sheetSubtitle').innerHTML = `<i class="bi bi-check-circle-fill me-1"></i> ` + data.subtitle;
   document.getElementById('sheetChallenge').innerText = data.challenge;
   document.getElementById('sheetSolution').innerText = data.solution;
 
@@ -1044,7 +1100,7 @@ function orderSimilarService() {
   const modalInstance = bootstrap.Modal.getInstance(sheetModalEl);
   if(modalInstance) modalInstance.hide();
 
-  openOrderForm(`Penanganan Serupa (${data.title})`, "50.000");
+  openOrderForm(`Penanganan Serupa (#TRV-0${currentActiveSheetIndex+1} - ${data.title})`, "50.000");
 }
 
 function openOrderForm(namaPaket, harga) {
