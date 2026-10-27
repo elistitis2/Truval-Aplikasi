@@ -1,2 +1,2 @@
 # pwa-template
-Truval adalah aplikasi platform untuk mengecek laporan keuangan.
+Truval adalah aplikasi layanan untuk pengecekan laporan keuangan.
