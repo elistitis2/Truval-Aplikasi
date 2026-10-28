@@ -2,12 +2,14 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TruVal Mobile App - High-End Portfolio Interactive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TruVal - Solusi Audit & Perapihan Laporan Keuangan</title>
+
 <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <!-- Bootstrap 5 & Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -26,81 +28,59 @@
   --truval-gold: #F59E0B;
 }
 
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #020617;
-  color: var(--truval-text-dark);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 10px;
-  margin: 0;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* ===== SIMULATOR FRAME HP HIGH-END ===== */
-.mobile-device {
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--truval-bg-light);
+  color: var(--truval-text-dark);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NATIVE CONTAINER (TANPA FRAME HP) */
+.app-wrapper {
   width: 100%;
-  max-width: 412px;
-  height: 850px;
+  max-width: 480px;
+  margin: 0 auto;
   background-color: #ffffff;
-  border-radius: 44px;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 12px #1e293b, 0 0 0 14px #334155;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
-}
-
-/* TOP STATUS BAR */
-.status-bar {
-  height: 40px;
-  background-color: var(--truval-navy);
-  color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  z-index: 100;
-  user-select: none;
-}
-.camera-notch {
-  width: 96px;
-  height: 20px;
-  background-color: #1e293b;
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 101;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
 }
 
 /* APP HEADER */
 .app-header {
   background-color: var(--truval-navy);
   color: #ffffff;
-  padding: 10px 20px 14px 20px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.15);
-  z-index: 99;
+  box-shadow: 0 4px 16px rgba(10, 25, 47, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 .app-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-family: 'Playfair Display', serif;
 }
 .app-brand .brand-logo {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   background: linear-gradient(135deg, var(--truval-tosca) 0%, var(--truval-navy) 100%);
   border-radius: 8px;
   display: flex;
@@ -108,55 +88,46 @@ body {
   justify-content: center;
   color: #ffffff;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
-/* CONTAINER APP SCREEN (SCROLLABLE) */
+/* APP BODY AREA */
 .app-body {
   flex: 1;
-  overflow-y: auto;
-  background-color: var(--truval-bg-light);
   padding-bottom: 80px;
-  scroll-behavior: smooth;
-}
-
-.app-body::-webkit-scrollbar {
-  width: 4px;
-}
-.app-body::-webkit-scrollbar-thumb {
-  background: var(--truval-border);
-  border-radius: 4px;
+  background-color: var(--truval-bg-light);
 }
 
 .app-screen {
   display: none;
   padding: 16px;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.25s ease-in-out;
 }
 .app-screen.active {
   display: block;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== BOTTOM NAVIGATION BAR ===== */
+/* ===== BOTTOM NAVIGATION BAR (FIXED PWA) ===== */
 .bottom-nav {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 65px;
   background-color: #ffffff;
   border-top: 1px solid var(--truval-border);
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 100;
-  padding-bottom: 8px;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
 }
 .nav-item-app {
   display: flex;
@@ -164,15 +135,15 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--truval-text-muted);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  width: 25%;
+  width: 33.33%;
   transition: all 0.2s ease;
 }
 .nav-item-app i {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   margin-bottom: 2px;
 }
 .nav-item-app.active {
@@ -182,7 +153,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* ===== CARD & GENERAL COMPONENTS ===== */
+/* GENERAL CARDS & BANNER */
 .app-card {
   background: #ffffff;
   border: 1px solid var(--truval-border);
@@ -198,8 +169,6 @@ body {
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 16px;
-  position: relative;
-  overflow: hidden;
 }
 
 .notion-tag-app {
@@ -249,10 +218,6 @@ body {
   text-decoration: none;
   transition: all 0.2s;
 }
-.btn-app-accent:active {
-  transform: scale(0.98);
-  background-color: var(--truval-tosca-dark);
-}
 
 .btn-app-tosca {
   background-color: var(--truval-tosca-dark);
@@ -269,7 +234,44 @@ body {
   transition: all 0.2s;
 }
 
-/* ===== HIGH-END PORTOFOLIO SPECIFIC STYLES ===== */
+/* DIGITAL NEWSPAPER ARTICLE STYLE */
+.newspaper-article-card {
+  background: #ffffff;
+  border: 1px solid var(--truval-border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(10, 25, 47, 0.03);
+}
+.newspaper-article-card:active { transform: scale(0.98); }
+.newspaper-cover-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.newspaper-body { padding: 12px; }
+
+/* FULL SCREEN ARTICLE READER VIEW */
+.article-reader-view {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 200;
+  overflow-y: auto;
+  padding: 20px;
+  padding-bottom: 40px;
+}
+.article-reader-view.active { display: block; }
+
+/* E-COMMERCE MOBILE APP STYLE CATALOG (GRID 2 KOLOM) */
 .portfolio-search-box {
   position: relative;
   margin-bottom: 12px;
@@ -282,12 +284,6 @@ body {
   font-size: 0.8rem;
   width: 100%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-  transition: all 0.2s;
-}
-.portfolio-search-box input:focus {
-  outline: none;
-  border-color: var(--truval-tosca);
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
 }
 .portfolio-search-box i {
   position: absolute;
@@ -295,7 +291,6 @@ body {
   top: 50%;
   transform: translateY(-50%);
   color: var(--truval-text-muted);
-  font-size: 0.9rem;
 }
 
 .chips-scroll-container {
@@ -306,9 +301,7 @@ body {
   margin-bottom: 14px;
   scrollbar-width: none;
 }
-.chips-scroll-container::-webkit-scrollbar {
-  display: none;
-}
+.chips-scroll-container::-webkit-scrollbar { display: none; }
 .chip-btn {
   white-space: nowrap;
   background: #ffffff;
@@ -319,86 +312,89 @@ body {
   font-weight: 600;
   color: var(--truval-text-muted);
   cursor: pointer;
-  transition: all 0.2s;
 }
 .chip-btn.active {
   background: var(--truval-navy);
   color: #ffffff;
   border-color: var(--truval-navy);
-  box-shadow: 0 4px 10px rgba(10, 25, 47, 0.15);
 }
 
-.portfolio-card-3d {
+.ecommerce-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.ecommerce-product-card {
   background: #ffffff;
   border: 1px solid var(--truval-border);
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 16px;
-  box-shadow: 0 8px 20px rgba(10, 25, 47, 0.05);
-  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(10, 25, 47, 0.03);
   cursor: pointer;
-  position: relative;
-}
-.portfolio-card-3d:active {
-  transform: scale(0.98);
-}
-
-.portfolio-card-header {
-  height: 110px;
-  background: linear-gradient(135deg, var(--truval-navy) 0%, #1e293b 100%);
-  padding: 14px;
-  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+}
+.ecommerce-product-card:active { transform: scale(0.96); }
+
+.ecommerce-thumb-box {
+  position: relative;
+  height: 100px;
+  background: var(--truval-navy);
   overflow: hidden;
 }
-
-.book-spine-3d {
-  width: 50px;
-  height: 68px;
-  background: linear-gradient(90deg, #ffffff 0%, #e2e8f0 10%, var(--truval-tosca) 20%, #0d9488 100%);
-  border-radius: 4px 8px 8px 4px;
-  box-shadow: 4px 6px 12px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 1.2rem;
-  transform: rotate(-5deg) translateY(4px);
-  border-left: 3px solid rgba(255,255,255,0.4);
+.ecommerce-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+.ecommerce-badge-top {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.58rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 700;
 }
 
-.metrics-comparison-box {
-  background: var(--truval-bg-light);
-  border: 1px solid var(--truval-border);
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 12px 0;
+.ecommerce-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.ecommerce-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--truval-navy);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+.ecommerce-desc {
+  font-size: 0.65rem;
+  color: var(--truval-text-muted);
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+}
+.ecommerce-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--truval-border);
+  padding-top: 6px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--truval-tosca-dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.metrics-item {
-  text-align: center;
-  flex: 1;
-}
-.metrics-item .label {
-  font-size: 0.62rem;
-  color: var(--truval-text-muted);
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.metrics-item .val-before {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ef4444;
-}
-.metrics-item .val-after {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--truval-tosca-dark);
 }
 
 /* NATIVE BOTTOM SHEET MODAL */
@@ -406,9 +402,10 @@ body {
   margin: 0;
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 100%;
+  left: 50%;
+  transform: translateX(-50%) !important;
+  width: 100%;
+  max-width: 480px;
 }
 .bottom-sheet-modal .modal-content {
   border-radius: 28px 28px 0 0;
@@ -416,14 +413,7 @@ body {
   max-height: 85vh;
   overflow-y: auto;
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.25);
-  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
 .bottom-sheet-drag-handle {
   width: 40px;
   height: 5px;
@@ -432,94 +422,43 @@ body {
   margin: 10px auto 16px auto;
 }
 
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.chat-bubble {
-  max-width: 80%;
-  padding: 10px 14px;
-  border-radius: 14px;
-  font-size: 0.8rem;
-  line-height: 1.4;
-}
-.chat-incoming {
-  background: #ffffff;
+/* INTERACTIVE FILE PREVIEW EMBED BOX */
+.file-preview-box {
+  background: #f1f5f9;
   border: 1px solid var(--truval-border);
-  align-self: flex-start;
-  border-bottom-left-radius: 2px;
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 14px;
 }
-.chat-outgoing {
-  background: var(--truval-tosca-light);
-  color: var(--truval-navy);
-  align-self: flex-end;
-  border-bottom-right-radius: 2px;
-  font-weight: 500;
+.file-preview-iframe {
+  width: 100%;
+  height: 240px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
 }
-
-.progress-step {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: relative;
-  padding-bottom: 16px;
-}
-.progress-step::before {
-  content: '';
-  position: absolute;
-  left: 11px;
-  top: 24px;
-  bottom: 0;
-  width: 2px;
-  background: var(--truval-border);
-}
-.progress-step:last-child::before { display: none; }
-.step-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--truval-border);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  z-index: 2;
-}
-.progress-step.done .step-icon { background: var(--truval-tosca-dark); }
-.progress-step.active .step-icon { background: var(--truval-navy); }
 </style>
 </head>
 <body>
 
-<div class="mobile-device">
-  <!-- TOP STATUS BAR -->
-  <div class="camera-notch"></div>
-  <div class="status-bar">
-    <span>19:42</span>
-    <div class="d-flex gap-2">
-      <i class="bi bi-wifi"></i>
-      <i class="bi bi-battery-full"></i>
-    </div>
-  </div>
+<div class="app-wrapper">
 
   <!-- APP HEADER -->
-  <div class="app-header">
+  <header class="app-header">
     <div class="app-brand">
       <div class="brand-logo">TV</div>
       <span>TruVal<span style="color:var(--truval-tosca)">.</span></span>
     </div>
-    <div class="d-flex gap-2">
-      <button class="btn btn-sm text-white p-0" onclick="switchAppTab('chat')"><i class="bi bi-bell fs-5"></i></button>
-    </div>
-  </div>
+    <a href="https://wa.me/6285600030264?text=Halo%20TruVal,%20saya%20ingin%20konsultasi%20mengenai%20laporan%20keuangan." target="_blank" class="btn btn-sm text-white p-0 d-flex align-items-center gap-1" style="font-size:0.75rem; background:rgba(255,255,255,0.15); padding:6px 12px !important; border-radius:20px; text-decoration:none;">
+      <i class="bi bi-whatsapp text-success fs-6"></i> Chat WA
+    </a>
+  </header>
 
-  <!-- APP BODY (SCROLLABLE CONTENT) -->
-  <div class="app-body">
+  <!-- APP BODY AREA -->
+  <main class="app-body">
    
     <!-- ================= TAB 1: BERANDA ================= -->
-    <div id="app-beranda" class="app-screen active">
+    <section id="app-beranda" class="app-screen active">
       <div class="hero-banner-app">
         <span class="notion-tag-app mb-2"><i class="bi bi-sparkles me-1"></i> Solusi Laporan Presisi</span>
         <h5 class="fw-bold mb-2" style="font-family:'Playfair Display', serif;">Wujudkan Laporan <span style="color:var(--truval-tosca-light); text-decoration:underline;">Valid</span> & Terpercaya.</h5>
@@ -545,47 +484,91 @@ body {
           </div>
         </div>
         <div class="col-6">
-          <div class="app-card text-center py-3 m-0" onclick="switchAppTab('chat')" style="cursor:pointer;">
-            <i class="bi bi-chat-dots fs-3" style="color:var(--truval-navy);"></i>
-            <div class="fw-bold small mt-1">Konsultasi WA</div>
-            <span class="text-muted" style="font-size:0.65rem;">Gratis Tanya-jawab</span>
-          </div>
+          <a href="https://wa.me/6285600030264?text=Halo%20TruVal,%20saya%20ingin%20konsultasi%20mengenai%20laporan%20keuangan." target="_blank" class="text-decoration-none">
+            <div class="app-card text-center py-3 m-0" style="cursor:pointer;">
+              <i class="bi bi-chat-dots fs-3" style="color:var(--truval-navy);"></i>
+              <div class="fw-bold small mt-1" style="color:var(--truval-text-dark);">Konsultasi WA</div>
+              <span class="text-muted" style="font-size:0.65rem;">Gratis Tanya-jawab</span>
+            </div>
+          </a>
         </div>
       </div>
 
-      <!-- PROGRES TRACKER -->
-      <div class="app-card">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <span class="fw-bold small" style="color:var(--truval-navy);"><i class="bi bi-clock-history me-1"></i> Progres Order Anda</span>
-          <span class="badge bg-success bg-opacity-10 text-success" style="font-size:0.65rem;">#TRV-01</span>
-        </div>
-       
-        <div class="progress-step done">
-          <div class="step-icon"><i class="bi bi-check"></i></div>
-          <div>
-            <div class="fw-bold text-dark" style="font-size:0.75rem;">Unggah Dokumen ID</div>
-            <div class="text-muted" style="font-size:0.65rem;">21 Okt, 18:30</div>
-          </div>
-        </div>
-        <div class="progress-step active">
-          <div class="step-icon"><i class="bi bi-gear-fill"></i></div>
-          <div>
-            <div class="fw-bold text-dark" style="font-size:0.75rem;">Verifikasi Formula & Balance</div>
-            <div class="text-muted" style="font-size:0.65rem;">Proses pemeriksaan tim ahli</div>
-          </div>
-        </div>
-        <div class="progress-step">
-          <div class="step-icon">3</div>
-          <div>
-            <div class="fw-bold text-muted" style="font-size:0.75rem;">Laporan Selesai</div>
-            <div class="text-muted" style="font-size:0.65rem;">Siap diunduh via WhatsApp</div>
-          </div>
-        </div>
+      <!-- KORAN DIGITAL / ARTIKEL BER-COVER -->
+      <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
+        <h6 class="fw-bold mb-0" style="color:var(--truval-navy);"><i class="bi bi-newspaper text-primary me-1"></i>Insights</h6>
+        <span class="badge bg-light text-dark border" style="font-size:0.65rem;">5 Artikel Utama</span>
       </div>
-    </div>
+
+      <!-- ARTIKEL 1 -->
+      <article class="newspaper-article-card" onclick="openArticleReader(0)">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Cover 1" class="newspaper-cover-img">
+        <div class="newspaper-body">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="badge bg-warning bg-opacity-10 text-dark fw-bold" style="font-size:0.58rem;">Tips Audit</span>
+            <span class="text-muted" style="font-size:0.62rem;">2 Min Baca</span>
+          </div>
+          <h6 class="fw-bold text-dark mb-1" style="font-size:0.85rem; font-family:'Playfair Display', serif;">Kenapa Neraca Laporan Keuangan Sering "Unbalanced"?</h6>
+          <p class="text-muted mb-0" style="font-size:0.72rem; line-height:1.3;">Pahami selisih pencatatan antara akun kas, persediaan, dan laba ditahan...</p>
+        </div>
+      </article>
+
+      <!-- ARTIKEL 2 -->
+      <article class="newspaper-article-card" onclick="openArticleReader(1)">
+        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Cover 2" class="newspaper-cover-img">
+        <div class="newspaper-body">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="badge bg-info bg-opacity-10 text-info fw-bold" style="font-size:0.58rem;">Studi Akademik</span>
+            <span class="text-muted" style="font-size:0.62rem;">3 Min Baca</span>
+          </div>
+          <h6 class="fw-bold text-dark mb-1" style="font-size:0.85rem; font-family:'Playfair Display', serif;">Cara Menyusun CaLK (Catatan atas Laporan Keuangan) Siap Sidang</h6>
+          <p class="text-muted mb-0" style="font-size:0.72rem; line-height:1.3;">Struktur penyusunan CaLK standar akademik agar tidak kena revisi pembimbing...</p>
+        </div>
+      </article>
+
+      <!-- ARTIKEL 3 -->
+      <article class="newspaper-article-card" onclick="openArticleReader(2)">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Cover 3" class="newspaper-cover-img">
+        <div class="newspaper-body">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="badge bg-success bg-opacity-10 text-success fw-bold" style="font-size:0.58rem;">UMKM Kuliner</span>
+            <span class="text-muted" style="font-size:0.62rem;">2 Min Baca</span>
+          </div>
+          <h6 class="fw-bold text-dark mb-1" style="font-size:0.85rem; font-family:'Playfair Display', serif;">Pentingnya Rekonsiliasi HPP untuk Menentukan Margin Untung</h6>
+          <p class="text-muted mb-0" style="font-size:0.72rem; line-height:1.3;">Jangan sampai usaha kelihatan ramai tapi tidak ada profit yang tersisa...</p>
+        </div>
+      </article>
+
+      <!-- ARTIKEL 4 -->
+      <article class="newspaper-article-card" onclick="openArticleReader(3)">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Cover 4" class="newspaper-cover-img">
+        <div class="newspaper-body">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary fw-bold" style="font-size:0.58rem;">Manajemen Kas</span>
+            <span class="text-muted" style="font-size:0.62rem;">3 Min Baca</span>
+          </div>
+          <h6 class="fw-bold text-dark mb-1" style="font-size:0.85rem; font-family:'Playfair Display', serif;">Arus Kas Metode Langsung vs Tidak Langsung: Mana yang Tepat?</h6>
+          <p class="text-muted mb-0" style="font-size:0.72rem; line-height:1.3;">Memilih metode laporan arus kas terbaik untuk bisnis jasa maupun ritel...</p>
+        </div>
+      </article>
+
+      <!-- ARTIKEL 5 -->
+      <article class="newspaper-article-card" onclick="openArticleReader(4)">
+        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb0?auto=format&fit=crop&w=600&q=80" alt="Cover 5" class="newspaper-cover-img">
+        <div class="newspaper-body">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="badge bg-danger bg-opacity-10 text-danger fw-bold" style="font-size:0.58rem;">Nirlaba & ISAK 35</span>
+            <span class="text-muted" style="font-size:0.62rem;">4 Min Baca</span>
+          </div>
+          <h6 class="fw-bold text-dark mb-1" style="font-size:0.85rem; font-family:'Playfair Display', serif;">Memahami Aset Bersih Terikat & Tidak Terikat pada Organisasi</h6>
+          <p class="text-muted mb-0" style="font-size:0.72rem; line-height:1.3;">Panduan transparansi pertanggungjawaban dana hibah dan yayasan nirlaba...</p>
+        </div>
+      </article>
+
+    </section>
 
     <!-- ================= TAB 2: LAYANAN ================= -->
-    <div id="app-layanan" class="app-screen">
+    <section id="app-layanan" class="app-screen">
       <div class="fw-bold mb-2" style="color:var(--truval-navy);">Pilih Paket Penanganan</div>
       <p class="text-muted small mb-3" style="font-size:0.75rem;">Sesuaikan kebutuhan perbaikan dokumen Anda.</p>
 
@@ -624,16 +607,16 @@ body {
         <p class="text-muted small my-2" style="font-size:0.72rem;">Pemeriksaan menyeluruh mencakup layout, formula, Arus Kas & Drafting CaLK.</p>
         <button class="btn btn-app-tosca py-2 mt-1" onclick="openOrderForm('Paket C - Full Review Laporan', '75.000')">Pilih Paket C</button>
       </div>
-    </div>
+    </section>
 
-    <!-- ================= TAB 3: PORTOFOLIO (#TRV-01 s.d. #TRV-10 REVISED) ================= -->
-    <div id="app-portofolio" class="app-screen">
+    <!-- ================= TAB 3: PORTOFOLIO (#TRV-01 s.d #TRV-10 TERHUBUNG KE FOLDER porto/) ================= -->
+    <section id="app-portofolio" class="app-screen">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
-          <h6 class="fw-bold mb-0" style="color:var(--truval-navy);">Portofolio & Studi Kasus</h6>
-          <span class="text-muted" style="font-size:0.7rem;">Rekam jejak perapihan presisi TruVal</span>
+          <h6 class="fw-bold mb-0" style="color:var(--truval-navy);">Katalog Portofolio</h6>
+          <span class="text-muted" style="font-size:0.7rem;">10 Kasus Laporan Perbaikan TruVal</span>
         </div>
-        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1" style="font-size:0.65rem;">10 Kasus TruVal</span>
+        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-2 py-1" style="font-size:0.65rem;">Ready Audit</span>
       </div>
 
       <!-- SEARCH BAR -->
@@ -652,228 +635,188 @@ body {
         <button class="chip-btn" onclick="filterPortfolioCategory('akademik', this)">Studi Akademik</button>
       </div>
 
-      <!-- PORTFOLIO LIST CONTAINER (#TRV-01 S.D #TRV-10) -->
-      <div id="portfolioList">
+      <!-- E-COMMERCE GRID CATALOG CONTAINER (#TRV-01 S.D #TRV-10) -->
+      <div class="ecommerce-grid" id="portfolioList">
 
         <!-- TRV-01 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-01 jurnal keuangan bagian umkm balance" onclick="openPortfolioSheet(0)">
-          <div class="portfolio-card-header">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-01 • UMKM</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Jurnal Keuangan UMKM</h6>
-            </div>
-            <div class="book-spine-3d"><i class="bi bi-file-earmark-spreadsheet"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="umkm" data-title="trv-01 jurnal keuangan bagian umkm balance" onclick="openPortfolioSheet(0)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-01</span>
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=400&q=80" alt="TRV-01">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Balance Siap Digunakan</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Jurnal Keuangan bagian UMKM</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Jurnal mengalami selisih sehingga laporan laba rugi tidak balance akhirnya Tim Truval membuka jurnal buku besar, dan merumuskan sesuai format, akhirnya balance kembali.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Jurnal Keuangan UMKM</div>
+            <div class="ecommerce-desc">Jurnal mengalami selisih, buku besar dirumuskan ulang.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-02 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-02 umkm kuliner warung kuliner sejahtera hpp laba ditahan" onclick="openPortfolioSheet(1)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #d97706 0%, #78350f 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-02 • UMKM</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Warung Kuliner Sejahtera</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #fde68a 10%, #d97706 20%, #b45309 100%);"><i class="bi bi-shop"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="umkm" data-title="trv-02 umkm kuliner warung kuliner sejahtera hpp laba ditahan" onclick="openPortfolioSheet(1)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-02</span>
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="TRV-02">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Kuliner (Warung Kuliner Sejahtera)</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi HPP & Laba Ditahan selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Warung Kuliner Sejahtera</div>
+            <div class="ecommerce-desc">Rekonsiliasi HPP & Laba Ditahan selesai.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-03 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="organisasi" data-title="trv-03 organisasi kemahasiswaan hima manajemen lpj surplus defisit" onclick="openPortfolioSheet(2)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-03 • Organisasi</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">HIMA Manajemen - LPJ</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #c7d2fe 10%, #4f46e5 20%, #3730a3 100%);"><i class="bi bi-people"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="organisasi" data-title="trv-03 organisasi kemahasiswaan hima manajemen lpj surplus defisit" onclick="openPortfolioSheet(2)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-03</span>
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=400&q=80" alt="TRV-03">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Organisasi Kemahasiswaan (HIMA Manajemen)</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Inflow/Outflow Kas Kegiatan & Surplus/Defisit selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">HIMA Manajemen - LPJ</div>
+            <div class="ecommerce-desc">Rekonsiliasi Inflow/Outflow Kas Kegiatan & Surplus/Defisit.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-04 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="koperasi" data-title="trv-04 organisasi nirlaba yayasan peduli bersama isak 35" onclick="openPortfolioSheet(3)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #059669 0%, #064e3b 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-04 • Koperasi & Nirlaba</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Yayasan Peduli Bersama</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #a7f3d0 10%, #059669 20%, #047857 100%);"><i class="bi bi-heart"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="koperasi" data-title="trv-04 organisasi nirlaba yayasan peduli bersama isak 35" onclick="openPortfolioSheet(3)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-04</span>
+            <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb0?auto=format&fit=crop&w=400&q=80" alt="TRV-04">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Organisasi Nirlaba (ISAK 35)</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Aset Bersih Terikat & Tidak Terikat (ISAK 35) selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Yayasan Peduli Bersama</div>
+            <div class="ecommerce-desc">Rekonsiliasi Aset Bersih Terikat & Tidak Terikat (ISAK 35).</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-05 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="jasa" data-title="trv-05 perusahaan jasa pt konsultan utama sejahtera net income" onclick="openPortfolioSheet(4)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-05 • Perusahaan Jasa</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">PT Konsultan Utama</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #bae6fd 10%, #0284c7 20%, #0369a1 100%);"><i class="bi bi-briefcase"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="jasa" data-title="trv-05 perusahaan jasa pt konsultan utama sejahtera net income" onclick="openPortfolioSheet(4)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-05</span>
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" alt="TRV-05">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Perusahaan Jasa Korporasi</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Laba Bersih Setelah Pajak (Net Income) & Retained Earnings selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">PT Konsultan Utama</div>
+            <div class="ecommerce-desc">Rekonsiliasi Laba Bersih Setelah Pajak & Retained Earnings.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-06 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="akademik" data-title="trv-06 studi akademik pt mandiri teknologi tama solvabilitas" onclick="openPortfolioSheet(5)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-06 • Studi Akademik</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">PT Mandiri Teknologi</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #ddd6fe 10%, #7c3aed 20%, #6d28d9 100%);"><i class="bi bi-journal-bookmark"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="akademik" data-title="trv-06 studi akademik pt mandiri teknologi tama solvabilitas" onclick="openPortfolioSheet(5)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-06</span>
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80" alt="TRV-06">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">Studi Akademik Keuangan</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Matriks Rasio Solvabilitas & Ekuitas Saham selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">PT Mandiri Teknologi</div>
+            <div class="ecommerce-desc">Rekonsiliasi Matriks Rasio Solvabilitas & Ekuitas Saham.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-07 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-07 umkm kerajinan kreasi bambu nusantara prive pemilik" onclick="openPortfolioSheet(6)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #b45309 0%, #78350f 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-07 • UMKM & Retail</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Kreasi Bambu Nusantara</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #fef3c7 10%, #b45309 20%, #92400e 100%);"><i class="bi bi-hammer"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="umkm" data-title="trv-07 umkm kerajinan kreasi bambu nusantara prive pemilik" onclick="openPortfolioSheet(6)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-07</span>
+            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80" alt="TRV-07">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Kerajinan</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Laporan Perubahan Ekuitas & Prive Pemilik selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Kreasi Bambu Nusantara</div>
+            <div class="ecommerce-desc">Rekonsiliasi Laporan Perubahan Ekuitas & Prive Pemilik.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-08 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-08 umkm jasa bersih kilat laundry arus kas ekuitas" onclick="openPortfolioSheet(7)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #0d9488 0%, #115e59 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-08 • UMKM & Retail</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Bersih Kilat Laundry</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #ccfbf1 10%, #0d9488 20%, #0f766e 100%);"><i class="bi bi-water"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="umkm" data-title="trv-08 umkm jasa bersih kilat laundry arus kas ekuitas" onclick="openPortfolioSheet(7)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-08</span>
+            <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=400&q=80" alt="TRV-08">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Jasa</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Arus Kas Bersih & Penyesuaian Ekuitas selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Bersih Kilat Laundry</div>
+            <div class="ecommerce-desc">Rekonsiliasi Arus Kas Bersih & Penyesuaian Ekuitas.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-09 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-09 umkm fashion konveksi busana indah hpp manufaktur" onclick="openPortfolioSheet(8)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #e11d48 0%, #9f1239 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-09 • UMKM & Retail</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Konveksi Busana Indah</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #fecdd3 10%, #e11d48 20%, #be123c 100%);"><i class="bi bi-scissors"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="umkm" data-title="trv-09 umkm fashion konveksi busana indah hpp manufaktur" onclick="openPortfolioSheet(8)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-09</span>
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=400&q=80" alt="TRV-09">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Fashion & Konveksi</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Biaya Produksi (HPP Manufaktur) & Laba Ditahan selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Konveksi Busana Indah</div>
+            <div class="ecommerce-desc">Rekonsiliasi Biaya Produksi (HPP Manufaktur) & Laba Ditahan.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
         <!-- TRV-10 -->
-        <div class="portfolio-card-3d portfolio-item" data-category="umkm" data-title="trv-10 umkm ritel toko rejeki utama persediaan barang ekuitas" onclick="openPortfolioSheet(9)">
-          <div class="portfolio-card-header" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
-            <div>
-              <span class="badge bg-light text-dark fw-bold mb-1" style="font-size:0.6rem;">#TRV-10 • UMKM & Retail</span>
-              <h6 class="text-white fw-bold mb-0" style="font-size:0.9rem;">Toko Rejeki Utama</h6>
-            </div>
-            <div class="book-spine-3d" style="background: linear-gradient(90deg, #ffffff 0%, #d1fae5 10%, #10b981 20%, #059669 100%);"><i class="bi bi-basket"></i></div>
+        <div class="ecommerce-product-card portfolio-item" data-category="umkm" data-title="trv-10 umkm ritel toko rejeki utama persediaan barang ekuitas" onclick="openPortfolioSheet(9)">
+          <div class="ecommerce-thumb-box">
+            <span class="ecommerce-badge-top">#TRV-10</span>
+            <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=400&q=80" alt="TRV-10">
           </div>
-          <div class="p-3">
-            <span class="badge bg-success bg-opacity-10 text-success fw-bold mb-2" style="font-size:0.65rem;"><i class="bi bi-check-circle-fill me-1"></i> Neraca Balance 0 Selisih</span>
-            <p class="text-dark fw-semibold mb-1" style="font-size:0.78rem;">UMKM Ritel</p>
-            <p class="text-muted mb-2" style="font-size:0.72rem;">Rekonsiliasi Persediaan Barang Dagangan & Ekuitas Pemilik selesai. Siap presentasi & audit.</p>
-            <div class="d-flex justify-content-between align-items-center mt-2">
-              <span class="text-primary fw-bold" style="font-size:0.72rem;">Ketuk untuk Detail <i class="bi bi-chevron-right ms-1"></i></span>
+          <div class="ecommerce-content">
+            <div class="ecommerce-title">Toko Rejeki Utama</div>
+            <div class="ecommerce-desc">Rekonsiliasi Persediaan Barang Dagangan & Ekuitas Pemilik.</div>
+            <div class="ecommerce-footer">
+              <span><i class="bi bi-check-circle-fill me-1"></i> Balance 0</span>
+              <i class="bi bi-chevron-right"></i>
             </div>
           </div>
         </div>
 
-      </div> <!-- END PORTFOLIO LIST -->
+      </div> <!-- END ECOMMERCE GRID -->
 
+    </section>
+
+  </main> <!-- END APP BODY -->
+
+  <!-- FULL SCREEN ARTICLE READER VIEW -->
+  <div class="article-reader-view" id="articleReaderView">
+    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+      <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="closeArticleReader()"><i class="bi bi-arrow-left me-1"></i> Kembali</button>
+      <span class="badge bg-primary bg-opacity-10 text-primary" id="readerCategory">Koran Digital TruVal</span>
     </div>
-
-    <!-- ================= TAB 4: CHAT / KONSULTASI ================= -->
-    <div id="app-chat" class="app-screen">
-      <div class="fw-bold mb-2" style="color:var(--truval-navy);">Bantuan & Konsultasi</div>
-      <p class="text-muted small mb-3" style="font-size:0.75rem;">Tim TruVal siap menjawab kendala laporan Anda secara presisi.</p>
-
-      <div class="chat-container mb-3">
-        <div class="chat-bubble chat-incoming">
-          Halo! Selamat datang di TruVal. Ada kendala laporan keuangan yang bisa kami bantu?
-        </div>
-        <div class="chat-bubble chat-outgoing">
-          Halo admin, neraca usaha saya selisih terus di bagian laba ditahan.
-        </div>
-        <div class="chat-bubble chat-incoming">
-          Bisa dikirimkan file Excel/PDF-nya kak, nanti kami periksa korelasi formulanya secara gratis!
-        </div>
-      </div>
-
-      <a href="https://wa.me/6285600030264?text=Halo%20TruVal,%20saya%20ingin%20konsultasi%20mengenai%20laporan%20keuangan.%0A%0ANama:%20%0AJenis%20Usaha/Akademik:%20%0AKendala%20Laporan:%20" target="_blank" class="btn btn-app-accent py-2">
-        <i class="bi bi-whatsapp me-2"></i> Lanjutkan Chat via WA Resmi
-      </a>
+    <h4 class="fw-bold mb-3" id="readerTitle" style="font-family:'Playfair Display', serif; color:var(--truval-navy);">Judul Artikel</h4>
+    <div class="app-card border-0 bg-light p-3 mb-3">
+      <p class="text-dark mb-0" style="font-size: 0.85rem; line-height: 1.7; white-space: pre-line;" id="readerContent">Isi artikel lengkap...</p>
     </div>
+  </div>
 
-  </div> <!-- END APP BODY -->
-
-  <!-- INTERACTIVE BOTTOM SHEET MODAL (PORTFOLIO DETAIL) -->
+  <!-- INTERACTIVE BOTTOM SHEET MODAL (PORTOFOLIO + FILE EMBED VIA FOLDER porto/) -->
   <div class="modal fade bottom-sheet-modal" id="portfolioSheetModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content p-3">
@@ -885,6 +828,16 @@ body {
        
         <h5 class="fw-bold mb-1" id="sheetTitle" style="color:var(--truval-navy);">Judul Proyek</h5>
         <span class="text-muted mb-3 d-block" style="font-size:0.75rem;" id="sheetSubtitle"><i class="bi bi-check-circle-fill me-1"></i> Status: Balance</span>
+
+        <!-- LIVE PRATINJAU DOKUMEN FOLDER porto/ -->
+        <div class="file-preview-box">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="fw-bold text-dark" style="font-size:0.75rem;"><i class="bi bi-file-earmark-spreadsheet-fill text-success me-1"></i> Pratinjau Dokumen Result</span>
+            <span class="badge bg-success" style="font-size:0.6rem;">Ter-audit</span>
+          </div>
+          <!-- EMBED IFRAME INTERAKTIF TERHUBUNG KE FOLDER porto/ -->
+          <iframe id="fileViewerIframe" class="file-preview-iframe" src="about:blank"></iframe>
+        </div>
 
         <!-- DETAILS CONTENT -->
         <div class="app-card border-0 bg-light p-3 mb-3">
@@ -937,8 +890,8 @@ body {
     </div>
   </div>
 
-  <!-- BOTTOM NAVIGATION BAR -->
-  <div class="bottom-nav">
+  <!-- BOTTOM NAVIGATION BAR (3 TAB UTAMA PWA) -->
+  <nav class="bottom-nav">
     <div class="nav-item-app active" id="tab-beranda" onclick="switchAppTab('beranda')">
       <i class="bi bi-house-door-fill"></i>
       <span>Beranda</span>
@@ -951,11 +904,7 @@ body {
       <i class="bi bi-journal-bookmark-fill"></i>
       <span>Portofolio</span>
     </div>
-    <div class="nav-item-app" id="tab-chat" onclick="switchAppTab('chat')">
-      <i class="bi bi-chat-dots-fill"></i>
-      <span>Konsultasi</span>
-    </div>
-  </div>
+  </nav>
 
 </div>
 
@@ -963,12 +912,42 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-// PORTFOLIO DATA OBJECT (#TRV-01 s.d #TRV-10)
+// ARTICLES DATA OBJECT (5 ARTIKEL KORAN DIGITAL)
+const articlesData = [
+  {
+    title: "Kenapa Neraca Laporan Keuangan Sering 'Unbalanced'?",
+    category: "Tips Audit & Keuangan",
+    content: "Ketidakseimbangan neraca (selisih antara Aset vs Kewajiban + Ekuitas) paling sering disebabkan oleh tiga hal utama:\n\n1. Transaksi Kas yang Dicatat Ganda: Penyerapan dana operasional sering ter double-entry karena pencatatan manual di Excel tanpa rumus otomatis.\n2. Penyesuaian Persediaan (Inventory Adj): Nilai akhir persediaan barang dagangan tidak di-update pada buku besar secara sinkron.\n3. Formula Laba Ditahan (Retained Earnings): Akun ekuitas neraca tidak mengunci secara dinamis ke laporan laba rugi bersih.\n\nTim TruVal biasa menelusuri kembali jurnal penyesuaian (adjusting entries) dari dokumen mentah klien untuk mengembalikan saldo neraca hingga balance 100% tanpa merubah substansi transaksi aslinya."
+  },
+  {
+    title: "Cara Menyusun CaLK (Catatan atas Laporan Keuangan) Siap Sidang",
+    category: "Studi Akademik",
+    content: "Bagi mahasiswa tingkat akhir, Catatan atas Laporan Keuangan (CaLK) sering menjadi sasaran revisi utama dari dosen pembimbing maupun penguji.\n\nCaLK yang ideal wajib memuat:\n- Gambaran Umum Perusahaan atau Objek Penelitian.\n- Rincian Kebijakan Akuntansi yang digunakan (pengakuan pendapatan & depresiasi).\n- Penjelasan Rinci atas Angka Pos-pos Neraca dan Laba Rugi.\n\nPenataan penomoran akun dan estetika layout tabel di TruVal diselaraskan secara penuh dengan format ikhtisar akademik."
+  },
+  {
+    title: "Pentingnya Rekonsiliasi HPP untuk Menentukan Margin Untung",
+    category: "UMKM & Retail",
+    content: "Banyak pemilik UMKM merasa omzet dan penjualan produknya ramai setiap hari, tetapi saldo kas tunai di akhir bulan selalu minus atau kosong. Masalah utamanya terletak pada perhitungan Harga Pokok Penjualan (HPP) yang belum memperhitungkan biaya bahan baku terbuang, ongkos operasional tersembunyi, dan alokasi tenaga kerja.\n\nRekonsiliasi HPP yang presisi membantu Anda menetapkan margin dan harga jual riil yang benar-benar menghasilkan profit bersih."
+  },
+  {
+    title: "Arus Kas Metode Langsung vs Tidak Langsung: Mana yang Tepat?",
+    category: "Manajemen Kas",
+    content: "Laporan Arus Kas adalah elemen vital yang menunjukkan likuiditas riil usaha:\n\n- Metode Langsung: Mencatat penerimaan dan pengeluaran kas operasional secara mendalam, sangat cocok untuk bisnis ritel dan jasa harian.\n- Metode Tidak Langsung: Menyesuaikan Laba Bersih dengan transaksi non-kas seperti akumulasi penyusutan aset.\n\nTruVal merumuskan tabel arus kas otomatis yang saling mengunci dengan rekening koran bank Anda."
+  },
+  {
+    title: "Memahami Aset Bersih Terikat & Tidak Terikat pada Organisasi",
+    category: "Nirlaba & ISAK 35",
+    content: "Untuk yayasan, lembaga amil, LSM, dan organisasi kemahasiswaan, penyusunan laporan keuangan wajib mengacu pada standar ISAK 35.\n\nPenggunaan dana bantuan atau donasi publik dikelompokkan ke dalam:\n1. Aset Bersih Terikat (Temporer atau Permanen berdasarkan batasan donor).\n2. Aset Bersih Tidak Terikat.\n\nTransparansi laporan ini menjamin akuntabilitas pengurus di hadapan publik dan dewan pengawas."
+  }
+];
+
+// PORTFOLIO DATA OBJECT (#TRV-01 s.d #TRV-10 TERHUBUNG KEPADA FOLDER porto/ LOKAL)
 const portfolioData = [
   {
     title: "Jurnal Keuangan UMKM",
     category: "UMKM & Retail",
     subtitle: "Hasilnya Balance Siap Digunakan",
+    filePath: "porto/TRV-01.pdf",
     challenge: "Jurnal mengalami selisih sehingga laporan laba rugi tidak balance akhirnya Tim Truval membuka jurnal buku besar, dan merumuskan sesuai format, akhirnya balance kembali.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -976,6 +955,7 @@ const portfolioData = [
     title: "Warung Kuliner Sejahtera",
     category: "UMKM & Retail",
     subtitle: "UMKM Kuliner bagian UMKM",
+    filePath: "porto/TRV-02.pdf",
     challenge: "Rekonsiliasi HPP & Laba Ditahan selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -983,6 +963,7 @@ const portfolioData = [
     title: "HIMA Manajemen - LPJ",
     category: "Organisasi",
     subtitle: "Organisasi Kemahasiswaan bagian organisasi",
+    filePath: "porto/TRV-03.pdf",
     challenge: "Rekonsiliasi Inflow/Outflow Kas Kegiatan & Surplus/Defisit selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -990,6 +971,7 @@ const portfolioData = [
     title: "Yayasan Peduli Bersama",
     category: "Koperasi & Nirlaba",
     subtitle: "Organisasi Nirlaba (ISAK 35) bagian Koperasi",
+    filePath: "porto/TRV-04.pdf",
     challenge: "Rekonsiliasi Aset Bersih Terikat & Tidak Terikat (ISAK 35) selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -997,6 +979,7 @@ const portfolioData = [
     title: "PT Konsultan Utama Sejahtera",
     category: "Perusahaan Jasa",
     subtitle: "Perusahaan Jasa Korporasi bagian Jasa",
+    filePath: "porto/TRV-05.pdf",
     challenge: "Rekonsiliasi Laba Bersih Setelah Pajak (Net Income) & Retained Earnings selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -1004,6 +987,7 @@ const portfolioData = [
     title: "PT Mandiri Teknologi Tama",
     category: "Studi Akademik",
     subtitle: "Studi Akademik Keuangan bagian Studi Akademik",
+    filePath: "porto/TRV-06.pdf",
     challenge: "Rekonsiliasi Matriks Rasio Solvabilitas & Ekuitas Saham selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -1011,6 +995,7 @@ const portfolioData = [
     title: "Kreasi Bambu Nusantara",
     category: "UMKM & Retail",
     subtitle: "UMKM Kerajinan bagian UMKM & Retail",
+    filePath: "porto/TRV-07.pdf",
     challenge: "Rekonsiliasi Laporan Perubahan Ekuitas & Prive Pemilik selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -1018,6 +1003,7 @@ const portfolioData = [
     title: "Bersih Kilat Laundry",
     category: "UMKM & Retail",
     subtitle: "UMKM Jasa bagian UMKM & Retail",
+    filePath: "porto/TRV-08.pdf",
     challenge: "Rekonsiliasi Arus Kas Bersih & Penyesuaian Ekuitas selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -1025,6 +1011,7 @@ const portfolioData = [
     title: "Konveksi Busana Indah",
     category: "UMKM & Retail",
     subtitle: "UMKM Fashion & Konveksi bagian UMKM & Retail",
+    filePath: "porto/TRV-09.pdf",
     challenge: "Rekonsiliasi Biaya Produksi (HPP Manufaktur) & Laba Ditahan selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   },
@@ -1032,6 +1019,7 @@ const portfolioData = [
     title: "Toko Rejeki Utama",
     category: "UMKM & Retail",
     subtitle: "UMKM Ritel bagian UMKM & Retail",
+    filePath: "porto/TRV-10.pdf",
     challenge: "Rekonsiliasi Persediaan Barang Dagangan & Ekuitas Pemilik selesai.",
     solution: "Neraca balance 0 selisih, siap presentasi & audit."
   }
@@ -1048,10 +1036,25 @@ function switchAppTab(tabName) {
   document.getElementById('app-' + tabName).classList.add('active');
   document.getElementById('tab-' + tabName).classList.add('active');
  
-  document.querySelector('.app-body').scrollTop = 0;
+  window.scrollTo(0, 0);
+  closeArticleReader();
 }
 
-/* PORTFOLIO INTERACTIVE FUNCTIONS */
+/* FULL SCREEN ARTICLE READER FUNCTIONS */
+function openArticleReader(index) {
+  const art = articlesData[index];
+  document.getElementById('readerCategory').innerText = art.category;
+  document.getElementById('readerTitle').innerText = art.title;
+  document.getElementById('readerContent').innerText = art.content;
+
+  document.getElementById('articleReaderView').classList.add('active');
+}
+
+function closeArticleReader() {
+  document.getElementById('articleReaderView').classList.remove('active');
+}
+
+/* PORTFOLIO INTERACTIVE FUNCTIONS WITH OFFICE EMBED FOR porto/ FILES */
 function filterPortfolioCategory(category, btnElement) {
   document.querySelectorAll('.chip-btn').forEach(btn => btn.classList.remove('active'));
   btnElement.classList.add('active');
@@ -1059,7 +1062,7 @@ function filterPortfolioCategory(category, btnElement) {
   const items = document.querySelectorAll('.portfolio-item');
   items.forEach(item => {
     if (category === 'all' || item.getAttribute('data-category') === category) {
-      item.style.display = 'block';
+      item.style.display = 'flex';
     } else {
       item.style.display = 'none';
     }
@@ -1073,7 +1076,7 @@ function filterPortfolioItems() {
   items.forEach(item => {
     const searchData = item.getAttribute('data-title');
     if (searchData.includes(query)) {
-      item.style.display = 'block';
+      item.style.display = 'flex';
     } else {
       item.style.display = 'none';
     }
@@ -1089,6 +1092,9 @@ function openPortfolioSheet(index) {
   document.getElementById('sheetSubtitle').innerHTML = `<i class="bi bi-check-circle-fill me-1"></i> ` + data.subtitle;
   document.getElementById('sheetChallenge').innerText = data.challenge;
   document.getElementById('sheetSolution').innerText = data.solution;
+
+  // Memuat file PDF langsung di dalam iframe pratinjau
+  document.getElementById('fileViewerIframe').src = data.filePath;
 
   var sheetModal = new bootstrap.Modal(document.getElementById('portfolioSheetModal'));
   sheetModal.show();
